@@ -219,9 +219,11 @@ const getPaperPile = async () => {
   // ...
 
   if (await storageBucket.hasItem(`${logseq.settings.citationReferenceDB}`)) {
-    paperpile = await storageBucket.getItem(
-      `${logseq.settings.citationReferenceDB}`
-    );
+    let tempPaperpile = await storageBucket.getItem(`${logseq.settings.citationReferenceDB}`);
+    // Remove crossref field to avoid circular references
+    tempPaperpile = tempPaperpile.replace(/^\s*crossref\s*=\s*{[^}]*},?\s*$/gm, '');
+    // Assign the processed data to the global variable paperpile
+    paperpile = tempPaperpile;
     createDB();
   }
   else {

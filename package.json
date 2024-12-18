@@ -1,6 +1,6 @@
 {
   "name": "logseq-citation-manager",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "A citation manager plugin for logseq, integrating Paperpile, Zotero and any Bibtex exportable citation manager",
   "main": "dist/index.html",
   "scripts": {

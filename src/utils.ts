@@ -78,6 +78,11 @@ const parseTemplate = (text) => {
   template = template.replaceAll("{file++}", () => {
     let text = "";
     fields.file?.forEach((individualFile) => {
+      // Check if the individualFile starts with ':'
+      if (individualFile.startsWith(':')) {
+        // Remove the leading ':' and the trailing ':PDF' or any similar file type suffix
+        individualFile = individualFile.replace(/^:|:.*$/g, '');
+      }
       text =
         text +
         `${logseq.settings.fileTemplate
